@@ -18,8 +18,13 @@ if num1 is num1:
 else:
 	print("Different instances")
 
-b1 = False
-if not b1:
+b1 = True
+b2 = True
+if not b1 == b2:
 	print("b1 is false")
 
-print((not False) == False)
+print(not True == False)
+
+name1 = input("Name?")
+A = "A" if name1 == "aaa" else "B"
+print(A)
