@@ -1,4 +1,4 @@
-from Backend.calc_backend import CalculatorBackend
+from calc_backend import CalculatorBackend
 import unittest
 
 
@@ -21,8 +21,8 @@ class TestCalculatorBackend(unittest.TestCase):
     def test_integer_divide(self):
         self.assertEqual(self.calculator.integer_divide(10, 4), 2)
 
-    def test_factorial(self):
-        self.assertEqual(self.calculator.factorial(3), 6)
+    #def test_factorial(self):
+        #self.assertEqual(self.calculator.factorial(3), 6)
 
 
 if __name__ == "__main__":

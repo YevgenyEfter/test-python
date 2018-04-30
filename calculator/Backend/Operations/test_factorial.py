@@ -1,4 +1,4 @@
-from Backend.Operations.factorial import Factorial
+from factorial import Factorial
 import unittest
 
 
@@ -8,6 +8,7 @@ class TestFactorial(unittest.TestCase):
 
     def test_factorial(self):
         self.assertEqual(self.factorial.calcFactorial(3), 6)
+        self.assertRaises(ValueError, self.factorial.calcFactorial, -1)
 
 
 if __name__ == "__main__":
