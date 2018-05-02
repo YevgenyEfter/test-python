@@ -1,4 +1,4 @@
-#from Backend.Operations.factorial import Factorial
+from factorial import Factorial
 
 class CalculatorBackend:
     def __init__(self):
@@ -19,5 +19,5 @@ class CalculatorBackend:
     def integer_divide(self, a, b):
         return a // b
 
-    #def factorial(self, number):
-        #return Factorial().calcFactorial(number)
+    def factorial(self, number):
+        return Factorial().calcFactorial(number)

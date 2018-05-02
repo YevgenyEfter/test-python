@@ -1,5 +1,7 @@
 from calc_backend import CalculatorBackend
 import unittest
+from unittest import mock
+from unittest.mock import patch
 
 
 class TestCalculatorBackend(unittest.TestCase):
@@ -21,8 +23,25 @@ class TestCalculatorBackend(unittest.TestCase):
     def test_integer_divide(self):
         self.assertEqual(self.calculator.integer_divide(10, 4), 2)
 
-    #def test_factorial(self):
-        #self.assertEqual(self.calculator.factorial(3), 6)
+    @mock.patch("calc_backend.Factorial.calcFactorial")
+    def test_factorial_decorator(self, mocked_calcFactorial):
+        mocked_calcFactorial.return_value = 120
+
+        result = self.calculator.factorial(3)
+
+        self.assertTrue(mocked_calcFactorial.called)
+        mocked_calcFactorial.assert_called_with(3)
+        self.assertEqual(result, 120)
+
+    def test_factorial_context_manager(self):
+        with patch("calc_backend.Factorial.calcFactorial") as mocked_calcFactorial:
+            mocked_calcFactorial.return_value = 120
+
+            result = self.calculator.factorial(3)
+
+            self.assertTrue(mocked_calcFactorial.called)
+            mocked_calcFactorial.assert_called_with(3)
+            self.assertEqual(result, 120)
 
 
 if __name__ == "__main__":
