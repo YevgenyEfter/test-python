@@ -10,12 +10,34 @@ class Employee:
         self.last = last
         self.pay = pay
         self.raise_amount = 1.30
-        self.email = "{}.{}@company.com".format(first, last)
 
         Employee.num_of_employees += 1
 
+    @property
+    def email(self):
+        return "{}.{}@company.com".format(self.first, self.last)
+
+    @property
     def fullname(self):
         return "{} {}".format(self.first, self.last)
+
+    @fullname.setter
+    def fullname(self, name):
+        first, last = name.split(" ")
+        self.first = first
+        self.last = last
+
+    @fullname.deleter
+    def fullname(self):
+        print ("Delete name")
+        self.first = None
+        self.last = None
+
+    def __repr__(self):
+        return "Employee('{}', '{}, '{}')".format(self.first, self.last, self.pay)
+
+    def __str__(self):
+        return "{} - {}".format(self.fullname(), self.email)
 
     def apply_raise(self):
         self.pay = int(self.pay * self.raise_amount)
@@ -120,11 +142,20 @@ emp_2 = Employee("C", "D", 60000)
 # print(Employee.is_workday(date_1))
 # print(Employee.is_workday(date_2))
 
-dev_1 = Developer("Aaa", "Bbb", "1111", "java")
-print(dev_1.raise_amount)
+# dev_1 = Developer("Aaa", "Bbb", "1111", "java")
+# print(dev_1.raise_amount)
+#
+# dev_1.print_something()
+# dev_1.print_static()
+#
+# print(isinstance(dev_1, Developer))
+# print(issubclass(Developer, Employee))
+#
+# print(emp_1)
+# print(repr(emp_1))
+# print(str(emp_1))
 
-dev_1.print_something()
-dev_1.print_static()
-
-print(isinstance(dev_1, Developer))
-print(issubclass(Developer, Employee))
+print(emp_1.email)
+emp_1.fullname = "A1 B1"
+del emp_1.fullname
+print(emp_1.email)
